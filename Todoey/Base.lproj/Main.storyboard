@@ -24,6 +24,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="tintColor" red="0.88235294819999999" green="0.70980393890000004" blue="0.40000003579999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -31,7 +32,14 @@
                             <outlet property="delegate" destination="Ij3-kB-VWz" id="oik-wa-qiP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="ToDo" id="NR4-Zi-opz"/>
+                    <navigationItem key="navigationItem" title="ToDo" id="NR4-Zi-opz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wbN-uS-oIs">
+                            <color key="tintColor" red="0.88235294819999999" green="0.70980393890000004" blue="0.40000003579999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="addButtonPressed:" destination="Ij3-kB-VWz" id="OAE-1f-6TM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wE5-9u-6eG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
