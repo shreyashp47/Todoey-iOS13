@@ -24,7 +24,7 @@ class ToDoViewController: UITableViewController {
         super.viewDidLoad()
         
         
-       // loadItems()
+        loadItems()
         
         
         //        if let items = defaults.array(forKey: "ToDoListArray") as? [Item] {
@@ -68,7 +68,16 @@ class ToDoViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(itemArray[indexPath.row])
         
+        
+        //to delete from database
+        //context.delete(itemArray[indexPath.row])
+        //itemArray.remove(at: indexPath.row)
+        //--
+        
+        
+        
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+        
         
         saveItems()
         
@@ -101,7 +110,7 @@ class ToDoViewController: UITableViewController {
                 self.itemArray.append(newItem)
                 
                 //self.defaults.set(self.itemArray,forKey: "ToDoListArray")
-                let encoder = PropertyListEncoder()
+                //let encoder = PropertyListEncoder()
                
                 self.saveItems()
                 
@@ -129,9 +138,9 @@ class ToDoViewController: UITableViewController {
         tableView.reloadData()
     }
     
-//    
-//     func loadItems() {
-//        
+    
+     func loadItems() {
+        
 //        if  let data = try? Data(contentsOf: dataFinePath!){
 //            let decoder = PropertyListDecoder()
 //            do {
@@ -141,7 +150,16 @@ class ToDoViewController: UITableViewController {
 //            }
 //            
 //        }
-//    }
+         
+         
+         //fetching data from database // core data
+         let request : NSFetchRequest<Item> = Item.fetchRequest()
+         do {
+           itemArray =   try context.fetch(request)
+         }catch {
+             print("error - \(error)")
+         }
+    }
     
 }
 
