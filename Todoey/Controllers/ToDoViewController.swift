@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class ToDoViewController: UITableViewController {
     let dataFinePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Item.plist")
     
-    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     
     
     //var itemArray = ["Milk" , "Oil" , "Mac"]
@@ -22,7 +24,7 @@ class ToDoViewController: UITableViewController {
         super.viewDidLoad()
         
         
-        loadItems()
+       // loadItems()
         
         
         //        if let items = defaults.array(forKey: "ToDoListArray") as? [Item] {
@@ -93,8 +95,9 @@ class ToDoViewController: UITableViewController {
             (action) in
             if let text = textField.text {
                 
-                let newItem = Item()
+                let newItem = Item(context: self.context)
                 newItem.title = text
+                newItem.done = false
                 self.itemArray.append(newItem)
                 
                 //self.defaults.set(self.itemArray,forKey: "ToDoListArray")
@@ -116,31 +119,29 @@ class ToDoViewController: UITableViewController {
     
     
     func saveItems(){
-        let encoder = PropertyListEncoder()
         do {
             
-            let data = try encoder.encode(self.itemArray)
-            try data.write(to: self.dataFinePath!)
+            try context.save()
         }catch {
-            
+            print(error)
         }
         
         tableView.reloadData()
     }
     
-    
-     func loadItems() {
-        
-        if  let data = try? Data(contentsOf: dataFinePath!){
-            let decoder = PropertyListDecoder()
-            do {
-                itemArray = try decoder.decode([Item].self, from: data)
-            } catch {
-                print("error")
-            }
-            
-        }
-    }
+//    
+//     func loadItems() {
+//        
+//        if  let data = try? Data(contentsOf: dataFinePath!){
+//            let decoder = PropertyListDecoder()
+//            do {
+//                itemArray = try decoder.decode([Item].self, from: data)
+//            } catch {
+//                print("error")
+//            }
+//            
+//        }
+//    }
     
 }
 
