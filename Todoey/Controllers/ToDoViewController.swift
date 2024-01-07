@@ -115,7 +115,7 @@ class ToDoViewController: UITableViewController {
                 let newItem = Item(context: self.context)
                 newItem.title = text
                 newItem.done = false
-                //newItem.parentCategory = self.selectedCategory
+                newItem.parentCategory = self.selectedCategory
             
                 self.itemArray.append(newItem)
                 
@@ -150,8 +150,8 @@ class ToDoViewController: UITableViewController {
     
     
     
-    func loadItems(with request: NSFetchRequest<Item>) {
-        
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil) {
+   
         //        if  let data = try? Data(contentsOf: dataFinePath!){
         //            let decoder = PropertyListDecoder()
         //            do {
@@ -166,6 +166,15 @@ class ToDoViewController: UITableViewController {
         //fetching data from database // core data
         //let request : NSFetchRequest<Item> = Item.fetchRequest()
         do {
+            let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+            
+            if let addtionalPredicate = predicate {
+                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, addtionalPredicate])
+            } else {
+                request.predicate = categoryPredicate
+            }
+
+            
             itemArray =   try context.fetch(request)
         }catch {
             print("error - \(error)")
@@ -199,14 +208,13 @@ extension ToDoViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let request : NSFetchRequest<Item> = Item.fetchRequest()
-        
-        request.predicate  = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-         
-        request.sortDescriptors  = [NSSortDescriptor(key: "title", ascending: true)]
-         
-        
     
-        loadItems(with: request)
+        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        loadItems(with: request, predicate: predicate)
+        
         
     }
    
