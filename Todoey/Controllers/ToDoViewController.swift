@@ -21,12 +21,18 @@ class ToDoViewController: UITableViewController {
     var itemArray = [Item]()
     //let defaults = UserDefaults.standard
     
+    var selectedCategory: Category? {
+        didSet {
+            loadItems(with: Item.fetchRequest())
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
          
         
         
-        loadItems(with: Item.fetchRequest())
+        //loadItems(with: Item.fetchRequest())
         
         
         //        if let items = defaults.array(forKey: "ToDoListArray") as? [Item] {
@@ -109,6 +115,8 @@ class ToDoViewController: UITableViewController {
                 let newItem = Item(context: self.context)
                 newItem.title = text
                 newItem.done = false
+                //newItem.parentCategory = self.selectedCategory
+            
                 self.itemArray.append(newItem)
                 
                 //self.defaults.set(self.itemArray,forKey: "ToDoListArray")
