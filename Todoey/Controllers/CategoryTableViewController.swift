@@ -94,6 +94,8 @@ class CategoryTableViewController: UITableViewController {
         
 
         do {
+            
+            
             categoryArray =   try context.fetch(request)
         }catch {
             print("error - \(error)")
