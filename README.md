@@ -1,19 +1,7 @@
-![App Brewery Banner](https://github.com/londonappbrewery/Images/blob/master/AppBreweryBanner.png)
+# TODO LIST IN REALM DATABASE
 
 
-# Todoey ✓
 
-## Our Goal
-
-The objective of this tutorial is to understand how to save data in iOS. We'll look at various choices and learn to use UserDefaults, Core Data and Realm.
-
-
-## What you will create
-
-A todolist app to keep track of all your tasks.
-
-
->This is a companion project to The App Brewery's Complete iOS Development Bootcamp, check out the full course at [www.appbrewery.co](https://www.appbrewery.co/)
-
-![End Banner](https://github.com/londonappbrewery/Images/blob/master/readme-end-banner.png)
-
+<img src="https://github.com/shreyashp47/Todoey-iOS13/assets/34227385/f04cc548-87d9-46f9-82a6-eebf6334b150" width="32%"/>
+<img src="https://github.com/shreyashp47/Todoey-iOS13/assets/34227385/19ca4892-5315-4edf-b04f-c396a37ed033" width="32%"/>
+<img src="https://github.com/shreyashp47/Todoey-iOS13/assets/34227385/c5eda5cb-a4b7-487e-9dce-2d8ac62447dc" width="32%"/>
