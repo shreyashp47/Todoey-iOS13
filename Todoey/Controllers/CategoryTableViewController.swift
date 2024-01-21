@@ -138,23 +138,14 @@ class CategoryTableViewController: UITableViewController {
     
     func loadCategories() {
         
-        
         categoryArray = realm.objects(
             Category.self
         )
         
-<<<<<<< HEAD
-
-        do {
-            
-            
-            categoryArray =   try context.fetch(request)
-        }catch {
-            print("error - \(error)")
-        }
-=======
->>>>>>> realm_database
         tableView.reloadData()
+        
+      
+
     }
     
     
